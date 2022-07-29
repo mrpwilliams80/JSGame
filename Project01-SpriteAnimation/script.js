@@ -161,9 +161,57 @@ let x = 0;                                              // starting position
 //#endregion
 
 
- //#region - Slow down Sprite Animation Sequence
+ //#region - Slow down Sprite Animation Sequence - Easy
 /*
  * Reduce the FPS for animated sprites, simple method
+ */
+
+// const SPRITE_SHEET = new Image();                      // create Image obj
+// SPRITE_SHEET.src = "./Assets/shadow_dog.png";          // set Image src
+
+// const SPRITE_WIDTH = 575;                              // width of sprite area
+// const SPRITE_HEIGHT = 523;                             // height of sprite area
+
+// let sourceVertPos = 0;                                 // selects sprite strip
+// let currentAnimationFrame = 0;                         // tracks current frame
+// let maxAnimationFrames = 6;                            // max number of frames
+
+// let currentGameFrame = 0;
+// const staggerFrames = 6;
+
+// function animateSpriteSlow() {
+//     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);  // clear canvas
+    
+//     // draw sprite sheet
+//     ctx.drawImage(
+//        SPRITE_SHEET,                                    // image source
+//        currentAnimationFrame * SPRITE_WIDTH,            // cycles through anim
+//        sourceVertPos * SPRITE_HEIGHT,               // cycles through sprites
+//        SPRITE_WIDTH, SPRITE_HEIGHT,                     // sprite section
+//        50, 50, CANVAS_WIDTH-100, CANVAS_HEIGHT-100      // draw on canvas
+//        );
+
+//     // only animate every nth frame
+//     if (currentGameFrame % staggerFrames == 0) {       
+//         // loop through each frame of sprite's animation
+//         if (++currentAnimationFrame == maxAnimationFrames) {
+//             currentAnimationFrame = 0;
+//         }
+//     }
+
+//     currentGameFrame++;                                 // inc gameFrame
+    
+//     requestAnimationFrame(animateSpriteSlow);       // call func for nxt frame
+// }
+
+// animateSpriteSlow();                                    // start animation
+
+//#endregion
+
+
+ //#region - Slow down Sprite Animation Sequence - Advanced
+/*
+ * Reduce the FPS for animated sprites, advanced method
  */
 
 const SPRITE_SHEET = new Image();                      // create Image obj
@@ -172,38 +220,36 @@ SPRITE_SHEET.src = "./Assets/shadow_dog.png";          // set Image src
 const SPRITE_WIDTH = 575;                              // width of sprite area
 const SPRITE_HEIGHT = 523;                             // height of sprite area
 
-let sourceVertPos = 0;                                 // selects sprite strip
-let currentAnimationFrame = 0;                         // tracks current frame
-let maxAnimationFrames = 6;                            // max number of frames
+let sourceX = 0;
+let sourceY = 0;
+
+let maxAnimationFrames = 7;                            // max number of frames
 
 let currentGameFrame = 0;
 const staggerFrames = 6;
 
-function animateSpriteSlow() {
+function animateSpriteSlowAdv() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);  // clear canvas
+
+    // calculate sprite source
+    sourceX =   SPRITE_WIDTH * 
+            (   Math.floor(currentGameFrame/staggerFrames) % 
+                maxAnimationFrames );
     
     // draw sprite sheet
     ctx.drawImage(
        SPRITE_SHEET,                                    // image source
-       currentAnimationFrame * SPRITE_WIDTH,            // cycles through anim
-       sourceVertPos * SPRITE_HEIGHT,               // cycles through sprites
+       sourceX,                                         // cycles through anim
+       sourceY * SPRITE_HEIGHT,               // cycles through sprites
        SPRITE_WIDTH, SPRITE_HEIGHT,                     // sprite section
        50, 50, CANVAS_WIDTH-100, CANVAS_HEIGHT-100      // draw on canvas
        );
 
-    // only animate every nth frame
-    if (currentGameFrame % staggerFrames == 0) {       
-        // loop through each frame of sprite's animation
-        if (++currentAnimationFrame == maxAnimationFrames) {
-            currentAnimationFrame = 0;
-        }
-    }
-
     currentGameFrame++;                                 // inc gameFrame
     
-    requestAnimationFrame(animateSpriteSlow);       // call func for nxt frame
+    requestAnimationFrame(animateSpriteSlowAdv);    // call func for nxt frame
 }
 
-animateSpriteSlow();                                    // start animation
+animateSpriteSlowAdv();                                    // start animation
 
 //#endregion
