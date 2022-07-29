@@ -14,9 +14,10 @@ function animate(){
     ctx.fillStyle = "#888";
     ctx.fillRect(x, 50, 100, 100);
 
-    x++;       
+    x++;
+    console.log("x = " + x)
      
-    requestAnimationFrame(animate())
+    requestAnimationFrame(animate)
 }
 
 animate();
