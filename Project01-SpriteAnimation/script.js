@@ -23,10 +23,20 @@ const CANVAS_HEIGHT = canvas.height = 600;
 
 //#endregion
 
-//#region - Draw Image to Canvas
-// draw image from external asset to canvas
 
-const SPRITE_SHEET = new Image();
-SPRITE_SHEET.src = "../Assets/shadow_dog.png"
+//#region - Draw Image to Canvas No Modifications
+// draw image from external asset to canvas at position 0,0 without resize
+
+const SPRITE_SHEET = new Image();                       // create Image obj
+SPRITE_SHEET.src = "./Assets/shadow_dog.png";           // set Image src
+
+function drawSprite() {
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);   // clear canvas
+    ctx.drawImage(SPRITE_SHEET, 0, 0);                  // draw sprite sheet
+
+    requestAnimationFrame(drawSprite);              // call func for nxt frame
+}
+
+drawSprite();                                           // start animation
 
 //#endregion
