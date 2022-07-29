@@ -124,6 +124,48 @@ let x = 0;                                              // starting position
  * Cycle through sections of sprite sheet to generate animation
  */
 
+// const SPRITE_SHEET = new Image();                      // create Image obj
+// SPRITE_SHEET.src = "./Assets/shadow_dog.png";          // set Image src
+
+// const SPRITE_WIDTH = 575;                              // width of sprite area
+// const SPRITE_HEIGHT = 523;                             // height of sprite area
+
+// let sourceVertPos = 0;                                 // selects sprite strip
+// let currentAnimationFrame = 0;                         // tracks current frame
+// let maxAnimationFrames = 7;                            // max number of frames
+
+// function animateSprite() {
+//     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);  // clear canvas
+    
+//     // draw sprite sheet
+//     ctx.drawImage(
+//        SPRITE_SHEET,                                    // image source
+//        currentAnimationFrame * SPRITE_WIDTH,            // cycles through anim
+//        sourceVertPos * SPRITE_HEIGHT,               // cycles through sprites
+//        SPRITE_WIDTH, SPRITE_HEIGHT,                     // sprite section
+//        50, 50, CANVAS_WIDTH-100, CANVAS_HEIGHT-100      // draw on canvas
+//        );
+
+//        // loop through each frame of sprite's animation
+//        if (++currentAnimationFrame < maxAnimationFrames) {
+//         currentAnimationFrame++;
+//        } else {
+//         currentAnimationFrame = 0;
+//        }
+    
+//     requestAnimationFrame(animateSprite);             // call func for nxt frame
+// }
+
+// animateSprite();                                           // start animation
+
+//#endregion
+
+
+ //#region - Slow down Sprite Animation Sequence
+/*
+ * Reduce the FPS for animated sprites, simple method
+ */
+
 const SPRITE_SHEET = new Image();                      // create Image obj
 SPRITE_SHEET.src = "./Assets/shadow_dog.png";          // set Image src
 
@@ -132,9 +174,12 @@ const SPRITE_HEIGHT = 523;                             // height of sprite area
 
 let sourceVertPos = 0;                                 // selects sprite strip
 let currentAnimationFrame = 0;                         // tracks current frame
-let maxAnimationFrames = 7;                            // max number of frames
+let maxAnimationFrames = 6;                            // max number of frames
 
-function animateSprite() {
+let currentGameFrame = 0;
+const staggerFrames = 6;
+
+function animateSpriteSlow() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);  // clear canvas
     
     // draw sprite sheet
@@ -146,16 +191,19 @@ function animateSprite() {
        50, 50, CANVAS_WIDTH-100, CANVAS_HEIGHT-100      // draw on canvas
        );
 
-       // loop through each frame of sprite's animation
-       if (++currentAnimationFrame < maxAnimationFrames) {
-        currentAnimationFrame++;
-       } else {
-        currentAnimationFrame = 0;
-       }
+    // only animate every nth frame
+    if (currentGameFrame % staggerFrames == 0) {       
+        // loop through each frame of sprite's animation
+        if (++currentAnimationFrame == maxAnimationFrames) {
+            currentAnimationFrame = 0;
+        }
+    }
+
+    currentGameFrame++;                                 // inc gameFrame
     
-    requestAnimationFrame(animateSprite);             // call func for nxt frame
+    requestAnimationFrame(animateSpriteSlow);       // call func for nxt frame
 }
 
-animateSprite();                                           // start animation
+animateSpriteSlow();                                    // start animation
 
 //#endregion
