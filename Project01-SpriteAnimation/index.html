@@ -9,8 +9,22 @@
 </head>
 <body>
 
+    <div class="controls">
+        <label for="animations">Choose what to display...</label>
+        <select name="animations" id="animations">
+            <option></option>
+            <option value="basic">Basic Block Animation</option>
+            <option value="image">Unmodified Image</option>
+            <option value="modImg">Modified Image</option>
+            <option value="singleSprite">Single Sprite from Sheet</option>
+            <option value="idle">Animated Sprite - Idle</option>
+            <option value="jump">Animated Sprite - Jump</option>
+            <option value="fall">Animated Sprite - Fall</option>
+        </select>
+    </div>
+
     <canvas id="canvas1"></canvas>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
