@@ -17,15 +17,15 @@ export default function animateDataStructure(
 
     // calculate sprite source this frame
     let currentAnimationFrame = Math.floor(frameManager.currentFrame/nthFrame) % 
-                                spriteAnimations[state.getState()].loc.length;
+                                spriteAnimations[state.value].loc.length;
     
     // draw from sprite sheet
     canvas.ctx.drawImage(
        image,
-       spriteAnimations[state.getState()].loc[currentAnimationFrame].x,
-       spriteAnimations[state.getState()].loc[currentAnimationFrame].y,
-       spriteAnimations[state.getState()].width,
-       spriteAnimations[state.getState()].height,
+       spriteAnimations[state.value].loc[currentAnimationFrame].x,
+       spriteAnimations[state.value].loc[currentAnimationFrame].y,
+       spriteAnimations[state.value].width,
+       spriteAnimations[state.value].height,
        50, 50, canvas.width-100, canvas.height-100
        );
 

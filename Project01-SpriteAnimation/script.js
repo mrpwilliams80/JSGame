@@ -1,14 +1,16 @@
 //#region Imports
 import createCanvas                 from "./Modules/canvas_setup.js";
 import loadImage                    from "./Modules/load_image.js";
+import createSpriteDataStructure    from "./Modules/sprite_data_structure.js";
+import createFrameManager           from "./Modules/frames.js"
+import createState                  from "./Modules/state.js";
 import animateBlock                 from "./Modules/simple_animation.js";
 import drawSpriteSheetNoMod         from "./Modules/draw_image_no_mod.js";
 import drawSpriteSheet              from "./Modules/draw_modified_image.js";
 import drawSprite                   from "./Modules/single_sprite.js";
 import animateSprite                from "./Modules/animate_sprite.js";
 import animateSpriteSlow            from "./Modules/animate_sprite_slow.js";
-import createFrameManager           from "./Modules/frames.js"
-import createSpriteDataStructure    from "./Modules/sprite_data_structure.js";
+
 import animateDataStructure         from "./Modules/animate_data_structure.js"
 //#endregion
 
@@ -40,7 +42,7 @@ const ANIMATION_STATES  = [
     },
     {
         name: "run",
-        numOfFrames: 9,
+        numOfFrames: 8,
         width: SPRITE_WIDTH,
         height: SPRITE_HEIGHT,
     },
@@ -91,22 +93,9 @@ const canvas            = createCanvas(
 const spriteSheet1      = loadImage("./Assets/shadow_dog.png");
 const spriteAnimations  = createSpriteDataStructure(ANIMATION_STATES);
 const frameManager      = createFrameManager();
+const state             = createState();
 //#endregion
 
-let state = {
-
-    value: "idle",
-
-    getState(){
-        return this.value;
-    },
-}
-
-
-
-// const animation = animateDataStructure(
-//     canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
-// );
 
 const dropdown = document.getElementById("animations");
 dropdown.addEventListener("change", function(e) {
@@ -126,5 +115,4 @@ animateDataStructure(
 
 
 //TODO > Implement frameManger Across all modules
-//TODO > state module
 //TODO > finish dropdown...
