@@ -107,12 +107,9 @@ dropdown.addEventListener("change", function(e) {
 // drawSpriteSheet(canvas, spriteSheet1);
 // drawSprite(canvas, spriteSheet1);
 // animateSprite(canvas, spriteSheet1);
-// animateSpriteSlow(canvas, spriteSheet1, 6);
+// animateSpriteSlow(canvas, spriteSheet1, 6, frameManager);
 animateDataStructure(
     canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
     );
 
-
-
-//TODO > Implement frameManger Across all modules
 //TODO > finish dropdown...
