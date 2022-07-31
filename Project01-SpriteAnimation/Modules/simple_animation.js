@@ -1,9 +1,11 @@
-/*
- * Draw a block in the canvas and move it horizontally from one edge till it is 
- * off the other
- */
-
 let x = 0;                                              // starting position
+
+/**
+ * Draw a block in the canvas and move it horizontally from one edge till it is 
+ * off the other side
+ * 
+ * @param {*} canvas    object from canvas_setup.js
+ */
 
 export default function animateBlock(canvas){
 

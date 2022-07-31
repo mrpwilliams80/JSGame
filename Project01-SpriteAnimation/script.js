@@ -9,7 +9,7 @@ import animateSprite                from "./Modules/animate_sprite.js";
 import animateSpriteSlow            from "./Modules/animate_sprite_slow.js";
 import createFrameManager           from "./Modules/frames.js"
 import createSpriteDataStructure    from "./Modules/sprite_data_structure.js";
-import animateDataStructure         from "./Modules/animate_data_structure.js";
+import animateDataStructure         from "./Modules/animate_data_structure.js"
 //#endregion
 
 //#region User Constants
@@ -46,7 +46,7 @@ const ANIMATION_STATES  = [
     },
     {
         name: "dizzy",
-        numOfFrames: 11,
+        numOfFrames: 10,
         width: SPRITE_WIDTH,
         height: SPRITE_HEIGHT,
     },
@@ -93,11 +93,24 @@ const spriteAnimations  = createSpriteDataStructure(ANIMATION_STATES);
 const frameManager      = createFrameManager();
 //#endregion
 
-let state="idle"
+let state = {
+
+    value: "idle",
+
+    getState(){
+        return this.value;
+    },
+}
+
+
+
+// const animation = animateDataStructure(
+//     canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
+// );
 
 const dropdown = document.getElementById("animations");
 dropdown.addEventListener("change", function(e) {
-    state = e.target.value;
+    state.value = e.target.value;  
 })
 
 // animateBlock(canvas);
@@ -105,11 +118,13 @@ dropdown.addEventListener("change", function(e) {
 // drawSpriteSheet(canvas, spriteSheet1);
 // drawSprite(canvas, spriteSheet1);
 // animateSprite(canvas, spriteSheet1);
-// animateSpriteSlow(canvas, spriteSheet1, 6)
+// animateSpriteSlow(canvas, spriteSheet1, 6);
 animateDataStructure(
     canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
     );
 
+
+
 //TODO > Implement frameManger Across all modules
-//TODO > better docs
+//TODO > state module
 //TODO > finish dropdown...

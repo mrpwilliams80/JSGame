@@ -1,6 +1,15 @@
-/*
+/**
  * Create a data structure to access sprites on sprite sheet; width & height are 
- * illustrative overkill in this instance
+ * illustrative overkill in this instance;
+ * 
+ * __ARRAY DATA:__
+ * - complex arrangement of arrays, objects and key:value pairs; console.log to 
+ * visualise
+ * 
+ * @param {*} animationStates   array of objects containing key:value pairs that 
+ *                              define animation states for the loaded sprite
+ *                              sheet
+ * @returns spriteAnimation array
  */
 
 export default function createSpriteDataStructure(animationStates){

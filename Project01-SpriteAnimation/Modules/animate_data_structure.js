@@ -1,11 +1,12 @@
 /**
  * Manage sprite animations using specific co-ordinates from data structure
+ * 
  * @param {*} canvas            object from canvas_setup.js
  * @param {*} image             source image for animation frames
  * @param {*} nthFrame          frame on which to animate
  * @param {*} frameManager      object from frames.js
  * @param {*} spriteAnimations  object with coordinates for each frame on image
- * @param {*} state             which animation strip to cycle through
+ * @param {*} state             animation selection data object
  */
 
 export default function animateDataStructure(
@@ -16,14 +17,15 @@ export default function animateDataStructure(
 
     // calculate sprite source this frame
     let currentAnimationFrame = Math.floor(frameManager.currentFrame/nthFrame) % 
-                                spriteAnimations[state].loc.length;
+                                spriteAnimations[state.getState()].loc.length;
     
     // draw from sprite sheet
     canvas.ctx.drawImage(
        image,
-       spriteAnimations[state].loc[currentAnimationFrame].x,
-       spriteAnimations[state].loc[currentAnimationFrame].y,
-       spriteAnimations[state].width, spriteAnimations[state].height,
+       spriteAnimations[state.getState()].loc[currentAnimationFrame].x,
+       spriteAnimations[state.getState()].loc[currentAnimationFrame].y,
+       spriteAnimations[state.getState()].width,
+       spriteAnimations[state.getState()].height,
        50, 50, canvas.width-100, canvas.height-100
        );
 

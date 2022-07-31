@@ -1,13 +1,18 @@
-/*
- * Cycle through sections of sprite sheet to generate animation
- */
-
+// Misc Values
 const SPRITE_WIDTH          = 575;                      // width of sprite area
 const SPRITE_HEIGHT         = 523;                      // height of sprite area
 
 let sourceVertPos           = 0;                        // selects sprite strip
 let currentAnimationFrame   = 0;                        // tracks current frame
 let maxAnimationFrames      = 7;                        // max number of frames
+
+
+/**
+ * Cycle through sections of sprite sheet to generate animation
+ * 
+ * @param {*} canvas    object from canvas_setup.js
+ * @param {*} image     source image for animation frames
+ */
 
 export default function animateSprite(canvas, image){
 

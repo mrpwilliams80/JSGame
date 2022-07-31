@@ -1,10 +1,14 @@
-/*
+/**
  * Draw an image from external asset to canvas, starting at position 0,0 without 
  * resizing the source;
- * Uses the three parameter version of drawImage():
- * ctx.drawImage(image, dx, dy)
- * dx:  draw staring x position
- * dy:  draw starting y position
+ * 
+ * Three parameter version - drawImage(image, dx, dy) - where:</br> 
+ * - dx:  draw staring x position
+ * - dy:  draw starting y position
+
+ * 
+ * @param {*} canvas    object from canvas_setup.js
+ * @param {*} image     source image for animation frames
  */
 
 export default function drawSpriteSheetNoMod(canvas, image){

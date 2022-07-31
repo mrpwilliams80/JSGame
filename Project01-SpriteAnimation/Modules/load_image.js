@@ -1,5 +1,8 @@
-/*
+/**
  * Load an image from source
+ * 
+ * @param {*} source    path for image to load
+ * @returns sourced Image object
  */
 
 export default function loadImage(source){

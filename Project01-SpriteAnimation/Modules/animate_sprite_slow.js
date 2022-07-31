@@ -9,8 +9,13 @@ let maxAnimationFrames      = 6;                        // max number of frames
 let currentGameFrame        = 0;                        // tracks current frame
 
 
-/*
+
+/**
  * Reduce the FPS for animated sprites, simple method, currently unused
+ * 
+ * @param {*} canvas    object from canvas_setup.js
+ * @param {*} image     source image for animation frames
+ * @param {*} nthFrame  frame on which to animate
  */
 
 function animateSpriteSlow(canvas, image, nthFrame){
@@ -42,8 +47,12 @@ function animateSpriteSlow(canvas, image, nthFrame){
 }
 
 
-/*
+/**
  * Reduce the FPS for animated sprites, advanced method
+ * 
+ * @param {*} canvas    object from canvas_setup.js
+ * @param {*} image     source image for animation frames
+ * @param {*} nthFrame  frame on which to animate
  */
 
 export default function animateSpriteSlowAdv(canvas, image, nthFrame) {
