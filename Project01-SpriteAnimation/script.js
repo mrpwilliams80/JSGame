@@ -9,6 +9,7 @@ import animateSprite from "./Modules/animate_sprite.js";
 import animateSpriteSlow from "./Modules/animate_sprite_slow.js";
 import createFrameManager from "./Modules/frames.js"
 import createSpriteDataStructure from "./Modules/sprite_data_structure.js";
+import animateDataStructure from "./Modules/animate_data_structure.js";
 //#endregion
 
 //#region User Constants
@@ -90,13 +91,6 @@ const spriteAnimations = createSpriteDataStructure(ANIMATION_STATES);
 const frameManager = createFrameManager();
 //#endregion
 
-// animateBlock(canvas);
-// drawSpriteSheetNoMod(canvas, spriteSheet1);
-// drawSpriteSheet(canvas, spriteSheet1);
-// drawSprite(canvas, spriteSheet1);
-// animateSprite(canvas, spriteSheet1);
-// animateSpriteSlow(canvas, spriteSheet1, 6)
-
 let state="idle"
 
 const dropdown = document.getElementById("animations");
@@ -104,34 +98,12 @@ dropdown.addEventListener("change", function(e) {
     state = e.target.value;
 })
 
-// const spriteAnimations = [];
-
-
-
-
-
-function animateSpriteSlowAdv(canvas, image, nthFrame) {
-    // clear canvas
-    canvas.refresh()
-
-    // calculate sprite source this frame
-    let currentAnimationFrame = Math.floor(frameManager.currentFrame/nthFrame) % 
-                                spriteAnimations[state].loc.length;
-    
-    // draw from sprite sheet
-    canvas.ctx.drawImage(
-       image,
-       spriteAnimations[state].loc[currentAnimationFrame].x,
-       spriteAnimations[state].loc[currentAnimationFrame].y,
-       spriteAnimations[state].width, spriteAnimations[state].height,
-       50, 50, canvas.width-100, canvas.height-100
-       );
-
-    // inc gameFrame
-    frameManager.incFrame();
-    
-    // call func for nxt frame
-    requestAnimationFrame(() => animateSpriteSlowAdv(canvas, image, nthFrame));
-}
-
-animateSpriteSlowAdv(canvas, spriteSheet1, 6);
+// animateBlock(canvas);
+// drawSpriteSheetNoMod(canvas, spriteSheet1);
+// drawSpriteSheet(canvas, spriteSheet1);
+// drawSprite(canvas, spriteSheet1);
+// animateSprite(canvas, spriteSheet1);
+// animateSpriteSlow(canvas, spriteSheet1, 6)
+animateDataStructure(
+    canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
+    );
