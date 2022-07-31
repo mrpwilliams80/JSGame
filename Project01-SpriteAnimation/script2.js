@@ -4,11 +4,17 @@ import loadImage                    from "./Modules/load_image.js";
 import createSpriteDataStructure    from "./Modules/sprite_data_structure.js";
 import createFrameManager           from "./Modules/frames.js"
 import createState                  from "./Modules/state.js";
+import animateBlock                 from "./Modules/simple_animation.js";
+import drawSpriteSheetNoMod         from "./Modules/draw_image_no_mod.js";
+import drawSpriteSheet              from "./Modules/draw_modified_image.js";
+import drawSprite                   from "./Modules/single_sprite.js";
+import animateSprite                from "./Modules/animate_sprite.js";
+import animateSpriteSlow            from "./Modules/animate_sprite_slow.js";
 import animateDataStructure         from "./Modules/animate_data_structure.js"
 //#endregion
 
 //#region User Constants
-const CANVAS_ID        = "canvas1";
+const CANVAS_ID         = "canvas2"
 const CANVAS_CONTEXT    = "2d";
 const CANVAS_WIDTH      = getComputedStyle(
                             document.getElementById(CANVAS_ID)
@@ -83,7 +89,7 @@ const ANIMATION_STATES  = [
 //#endregion
 
 //#region Calculated Constants
-const canvas            = createCanvas(
+const canvas           = createCanvas (
                             CANVAS_ID, CANVAS_CONTEXT, CANVAS_WIDTH,
                             CANVAS_HEIGHT
                             );
@@ -96,9 +102,5 @@ const state             = createState();
 
 const dropdown = document.getElementById("animations");
 dropdown.addEventListener("change", function(e) {
-    state.value = e.target.value;
+    console.log(e.target.value);
 });
-
-animateDataStructure(
-    canvas, spriteSheet1, 6, frameManager, spriteAnimations, state
-);

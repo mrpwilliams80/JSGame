@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprite Animation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="controls">
+        <button onClick="location.href='index2.html'">Beginner</button>
+        <div id="spacer"></div>
+        <button onClick="location.href='index.html'">Intermediate</button>
+    </br></br>
+        <label for="beginnerAnimations">Choose what to display...</label>
+        <select id="animations" name="beginnerAnimations">
+            <option value="animateBlock">Simple Animated Block</option>
+            <option value="fullSizeSpriteSheet">Full Size Sprite Sheet</option>
+            <option value="fitSpriteSheet">Fit Sprite Sheet</option>
+            <option value="singeSprite">Single Sprite</option>
+            <option value="animatedSprite">Animated Sprite</option>
+            <option value="finalSprite">Final Sprite</option>
+        </select>
+    </div>
+
+    <canvas id="canvas2"></canvas>
+
+    <script type="module" src="script2.js"></script>
+</body>
+</html>
