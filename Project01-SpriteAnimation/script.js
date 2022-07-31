@@ -8,43 +8,17 @@ import drawSprite from "./Modules/single_sprite.js";
 import animateSprite from "./Modules/animate_sprite.js";
 import animateSpriteSlow from "./Modules/animate_sprite_slow.js";
 import createFrameManager from "./Modules/frames.js"
+import createSpriteDataStructure from "./Modules/sprite_data_structure.js";
 //#endregion
 
-//#region Constants
+//#region User Constants
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 600;
 const CANVAS_ID = "canvas1";
 const CANVAS_CONTEXT = "2d";
 const SPRITE_WIDTH = 575;
 const SPRITE_HEIGHT = 523;
-//#endregion
-
-let canvas = createCanvas(  CANVAS_ID, CANVAS_CONTEXT, 
-                            CANVAS_WIDTH, CANVAS_HEIGHT );
-
-let spriteSheet1 = loadImage("./Assets/shadow_dog.png");
-
-let frameManager = createFrameManager();
-
-// animateBlock(canvas);
-// drawSpriteSheetNoMod(canvas, spriteSheet1);
-// drawSpriteSheet(canvas, spriteSheet1);
-// drawSprite(canvas, spriteSheet1);
-// animateSprite(canvas, spriteSheet1);
-// animateSpriteSlow(canvas, spriteSheet1, 6)
-
-let state="idle"
-
-const dropdown = document.getElementById("animations");
-dropdown.addEventListener("change", function(e) {
-    state = e.target.value;
-})
-
-// let currentGameFrame = 0;
-
-const spriteAnimations = [];
-
-const animationStates = [
+const ANIMATION_STATES = [
     {
         name: "idle",
         numOfFrames: 6,
@@ -106,22 +80,37 @@ const animationStates = [
         height: SPRITE_HEIGHT,
     },
 ];
+//#endregion
 
-animationStates.forEach((state, index) => {
-    let frames = {
-        loc: [],
-        width: state.width,
-        height: state.height,
-    }
-    for (let j = 0; j < state.numOfFrames; j++) {
-        let positionX = state.width * j;
-        let positionY = state.height * index;
-        frames.loc.push({x: positionX, y: positionY});
-    }
-    spriteAnimations[state.name] = frames
-});
+//#region Calculated Constants
+const canvas = createCanvas(    CANVAS_ID, CANVAS_CONTEXT, 
+                                CANVAS_WIDTH, CANVAS_HEIGHT );
+const spriteSheet1 = loadImage("./Assets/shadow_dog.png");
+const spriteAnimations = createSpriteDataStructure(ANIMATION_STATES);
+const frameManager = createFrameManager();
+//#endregion
 
-function animateSpriteSlowAdv(canvas, image, nthFrame, frameManager) {
+// animateBlock(canvas);
+// drawSpriteSheetNoMod(canvas, spriteSheet1);
+// drawSpriteSheet(canvas, spriteSheet1);
+// drawSprite(canvas, spriteSheet1);
+// animateSprite(canvas, spriteSheet1);
+// animateSpriteSlow(canvas, spriteSheet1, 6)
+
+let state="idle"
+
+const dropdown = document.getElementById("animations");
+dropdown.addEventListener("change", function(e) {
+    state = e.target.value;
+})
+
+// const spriteAnimations = [];
+
+
+
+
+
+function animateSpriteSlowAdv(canvas, image, nthFrame) {
     // clear canvas
     canvas.refresh()
 
