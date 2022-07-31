@@ -10,9 +10,16 @@
 <body>
 
     <div class="controls">
+        <label for="proficiency">Choose proficiency...</label>
+        <form name="proficiency">
+            <label for="beginner">Beginner</label>
+            <input type="radio" name="proficiency" value="beginner"/>
+            <label for="intermediate">Intermediate</label>
+            <input type="radio" name="proficiency" value="intermediate" checked/>
+        </form>
+    </br>
         <label for="animations">Choose what to display...</label>
         <select name="animations" id="animations">
-            <option></option>
             <option value="idle">Idle</option>
             <option value="jump">Jump</option>
             <option value="fall">Fall</option>

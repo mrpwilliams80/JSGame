@@ -15,10 +15,14 @@ import animateDataStructure         from "./Modules/animate_data_structure.js"
 //#endregion
 
 //#region User Constants
-const CANVAS_WIDTH      = 600;
-const CANVAS_HEIGHT     = 600;
 const CANVAS_ID         = "canvas1";
 const CANVAS_CONTEXT    = "2d";
+const CANVAS_WIDTH      = getComputedStyle(
+                            document.getElementById(CANVAS_ID)
+                            ).getPropertyValue("width").slice(0,-2);
+const CANVAS_HEIGHT     = getComputedStyle(
+                            document.getElementById(CANVAS_ID)
+                            ).getPropertyValue("height").slice(0,-2);
 const SPRITE_WIDTH      = 575;
 const SPRITE_HEIGHT     = 523;
 const ANIMATION_STATES  = [
@@ -96,10 +100,12 @@ const frameManager      = createFrameManager();
 const state             = createState();
 //#endregion
 
+// const radio = document.getElementById("proficiency");
+// radio.addEventListener()
 
 const dropdown = document.getElementById("animations");
 dropdown.addEventListener("change", function(e) {
-    state.value = e.target.value;  
+    state.value = e.target.value;
 })
 
 // animateBlock(canvas);

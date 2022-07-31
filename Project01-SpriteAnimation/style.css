@@ -1,21 +1,43 @@
+:root {
+    --canvas-height: 60vh;
+    --canvas-width: 60vh;
+}
+
+body {
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+
 #canvas1 {
     border: 5px solid gray;
     position: absolute;
-    top: 50%;
+    /* bottom: calc((40vh - 116px)/3); */
+    bottom: 7vh;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    transform: translate(-50%);
+    width: var(--canvas-width);
+    height: var(--canvas-height);
 }
 
 .controls {
     position: absolute;
     z-index: 10;
-    top: 50px;
-    left: 50%;
-    transform: translate(-50%);
+    /* top: calc((40vh - 116px)/3); */
+    top: 7vh;
+    width: 100vw;
+    text-align: center;
 }
 
 .controls, select, option {
-    font-size: 25px;
+    font-size: 4vh;
+}
+
+.controls form label {
+    font-size: 2vh;
+}
+
+.controls > * {
+    margin: 0px;
+    padding: 0px;
 }
