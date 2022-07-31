@@ -7,10 +7,12 @@
  * dy:  draw starting y position
  */
 
-export default function drawSpriteSheetNoMod(canvas, image) {
-    canvas.refresh();                                       // clear canvas
-    canvas.ctx.drawImage(image, 0, 0);                      // draw sprite sheet
+export default function drawSpriteSheetNoMod(canvas, image){
+
+    canvas.refresh();                                   // clear canvas
+    canvas.ctx.drawImage(image, 0, 0);                  // draw sprite sheet
 
     // call func for nxt frame
     requestAnimationFrame(() => drawSpriteSheetNoMod(canvas, image));
+
 }

@@ -3,7 +3,7 @@
  * illustrative overkill in this instance
  */
 
-export default function createSpriteDataStructure(animationStates) {
+export default function createSpriteDataStructure(animationStates){
 
     // create array to store data structure
     let spriteAnimations = []

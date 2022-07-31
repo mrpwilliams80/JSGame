@@ -11,9 +11,8 @@
 export default function animateDataStructure(
     canvas, image, nthFrame, frameManager, spriteAnimations, state
     ){
-
-    // clear canvas
-    canvas.refresh()
+    
+    canvas.refresh()                                    // clear canvas
 
     // calculate sprite source this frame
     let currentAnimationFrame = Math.floor(frameManager.currentFrame/nthFrame) % 

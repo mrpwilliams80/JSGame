@@ -16,7 +16,8 @@
  const SPRITE_WIDTH = 575;                              // width of sprite area
  const SPRITE_HEIGHT = 523;                             // height of sprite area
  
-export default function drawSprite(canvas, image) {
+export default function drawSprite(canvas, image){
+
     canvas.refresh()                                    // clear canvas
     
     // draw sprite sheet
@@ -28,4 +29,5 @@ export default function drawSprite(canvas, image) {
 
     // call func for nxt frame
     requestAnimationFrame(() => drawSprite(canvas, image));
+    
 }

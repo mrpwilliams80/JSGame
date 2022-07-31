@@ -9,13 +9,16 @@
  * dh:  draw height
  */
 
-export default function drawSpriteSheet(canvas, image) {
-    canvas.refresh()                                            // clear canvas
+export default function drawSpriteSheet(canvas, image){
+
+    canvas.refresh()                                    // clear canvas
     
     // draw sprite sheet
-    canvas.ctx.drawImage(   image, 
-                            50, 50, canvas.width - 100, canvas.height - 100);
+    canvas.ctx.drawImage(
+        image, 50, 50, canvas.width - 100, canvas.height - 100
+        );
 
     // call func for nxt frame
     requestAnimationFrame(() => drawSpriteSheet(canvas, image));
+    
 }
