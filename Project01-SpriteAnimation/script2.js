@@ -1,16 +1,13 @@
 //#region Imports
 import createCanvas                 from "./Modules/canvas_setup.js";
 import loadImage                    from "./Modules/load_image.js";
-import createSpriteDataStructure    from "./Modules/sprite_data_structure.js";
 import createFrameManager           from "./Modules/frames.js"
-import createState                  from "./Modules/state.js";
 import animateBlock                 from "./Modules/simple_animation.js";
 import drawSpriteSheetNoMod         from "./Modules/draw_image_no_mod.js";
 import drawSpriteSheet              from "./Modules/draw_modified_image.js";
 import drawSprite                   from "./Modules/single_sprite.js";
 import animateSprite                from "./Modules/animate_sprite.js";
 import animateSpriteSlow            from "./Modules/animate_sprite_slow.js";
-import animateDataStructure         from "./Modules/animate_data_structure.js"
 //#endregion
 
 //#region User Constants
@@ -94,13 +91,37 @@ const canvas           = createCanvas (
                             CANVAS_HEIGHT
                             );
 const spriteSheet1      = loadImage("./Assets/shadow_dog.png");
-const spriteAnimations  = createSpriteDataStructure(ANIMATION_STATES);
 const frameManager      = createFrameManager();
-const state             = createState();
 //#endregion
-
 
 const dropdown = document.getElementById("animations");
 dropdown.addEventListener("change", function(e) {
-    console.log(e.target.value);
+    switch (e.target.value){
+        case "animateBlock":
+            animateBlock(canvas, 0);
+            break;
+        case "fullSizeSpriteSheet":
+            drawSpriteSheetNoMod(canvas, spriteSheet1);
+            break;
+        case "fitSpriteSheet":
+            drawSpriteSheet(canvas, spriteSheet1);
+            break;
+        case "singeSprite":
+            drawSprite(canvas, spriteSheet1);
+            break;
+        case "animatedSprite":
+            animateSprite(canvas, spriteSheet1);
+            break;
+        // case "finalSprite":
+        //     animateSpriteSlow(canvas, spriteSheet1, 6, frameManager)
+        //     break;
+    }
 });
+/* NOTE:
+ * Technically, once started, each of the above continues to run indefinitely. 
+ * This means the final two animated sprites will change speed if they are 
+ * selected more than once. It does not matter as they are examples; the 
+ * intermediate animations do not suffer from this problem.
+ */
+
+animateBlock(canvas, 0);

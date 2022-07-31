@@ -18,6 +18,10 @@ const CANVAS_HEIGHT     = getComputedStyle(
                             ).getPropertyValue("height").slice(0,-2);
 const SPRITE_WIDTH      = 575;
 const SPRITE_HEIGHT     = 523;
+/* NOTE:
+ * I have deliberately altered some of the values for numOfFrames to create 
+ * smoother animation cycles.
+ */
 const ANIMATION_STATES  = [
     {
         name: "idle",
