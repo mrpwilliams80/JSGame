@@ -111,6 +111,5 @@ animateDataStructure(
     );
 
 //TODO > Implement frameManger Across all modules
-//TODO > load_image.js use param source
 //TODO > better docs
 //TODO > finish dropdown...
