@@ -7,6 +7,7 @@ import drawSpriteSheet from "./Modules/draw_modified_image.js";
 import drawSprite from "./Modules/single_sprite.js";
 import animateSprite from "./Modules/animate_sprite.js";
 import animateSpriteSlow from "./Modules/animate_sprite_slow.js";
+import createFrameManager from "./Modules/frames.js"
 //#endregion
 
 //#region Constants
@@ -14,6 +15,8 @@ const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 600;
 const CANVAS_ID = "canvas1";
 const CANVAS_CONTEXT = "2d";
+const SPRITE_WIDTH = 575;
+const SPRITE_HEIGHT = 523;
 //#endregion
 
 let canvas = createCanvas(  CANVAS_ID, CANVAS_CONTEXT, 
@@ -21,9 +24,125 @@ let canvas = createCanvas(  CANVAS_ID, CANVAS_CONTEXT,
 
 let spriteSheet1 = loadImage("./Assets/shadow_dog.png");
 
+let frameManager = createFrameManager();
+
 // animateBlock(canvas);
 // drawSpriteSheetNoMod(canvas, spriteSheet1);
 // drawSpriteSheet(canvas, spriteSheet1);
 // drawSprite(canvas, spriteSheet1);
 // animateSprite(canvas, spriteSheet1);
 // animateSpriteSlow(canvas, spriteSheet1, 6)
+
+let state="idle"
+
+const dropdown = document.getElementById("animations");
+dropdown.addEventListener("change", function(e) {
+    state = e.target.value;
+})
+
+// let currentGameFrame = 0;
+
+const spriteAnimations = [];
+
+const animationStates = [
+    {
+        name: "idle",
+        numOfFrames: 6,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "jump",
+        numOfFrames: 7,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "fall",
+        numOfFrames: 7,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "run",
+        numOfFrames: 9,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "dizzy",
+        numOfFrames: 11,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "sit",
+        numOfFrames: 5,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "roll",
+        numOfFrames: 6,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "bite",
+        numOfFrames: 7,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "ko",
+        numOfFrames: 12,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+    {
+        name: "getHit",
+        numOfFrames: 4,
+        width: SPRITE_WIDTH,
+        height: SPRITE_HEIGHT,
+    },
+];
+
+animationStates.forEach((state, index) => {
+    let frames = {
+        loc: [],
+        width: state.width,
+        height: state.height,
+    }
+    for (let j = 0; j < state.numOfFrames; j++) {
+        let positionX = state.width * j;
+        let positionY = state.height * index;
+        frames.loc.push({x: positionX, y: positionY});
+    }
+    spriteAnimations[state.name] = frames
+});
+
+function animateSpriteSlowAdv(canvas, image, nthFrame, frameManager) {
+    // clear canvas
+    canvas.refresh()
+
+    // calculate sprite source this frame
+    let currentAnimationFrame = Math.floor(frameManager.currentFrame/nthFrame) % 
+                                spriteAnimations[state].loc.length;
+    
+    // draw from sprite sheet
+    canvas.ctx.drawImage(
+       image,
+       spriteAnimations[state].loc[currentAnimationFrame].x,
+       spriteAnimations[state].loc[currentAnimationFrame].y,
+       spriteAnimations[state].width, spriteAnimations[state].height,
+       50, 50, canvas.width-100, canvas.height-100
+       );
+
+    // inc gameFrame
+    frameManager.incFrame();
+    
+    // call func for nxt frame
+    requestAnimationFrame(() => animateSpriteSlowAdv(canvas, image, nthFrame));
+}
+
+animateSpriteSlowAdv(canvas, spriteSheet1, 6);
